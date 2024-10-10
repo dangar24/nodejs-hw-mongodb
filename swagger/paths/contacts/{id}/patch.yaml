@@ -1,0 +1,39 @@
+tags:
+  - Contacts
+summary: Update a contact
+operationId: updateContact
+description: 'Update a contact by contact id'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    description: The ID of the contact to update
+    schema:
+      type: string
+responses:
+  '200':
+    description: Successfully patched a contact
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully patched a contact!'
+            data:
+              type: object
+              $ref: '../../../components/schemas/contact.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
